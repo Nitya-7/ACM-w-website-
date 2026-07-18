@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects & Blogs | ACM-W BPHC</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts matching the theme -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Theme Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        navBg: '#0b1120',
+                        mainGradientStart: '#3b3561',
+                        mainGradientMid: '#2f2b57',
+                        mainGradientEnd: '#25254b',
+                        cardBg: '#1e2947',
+                        accentPink: '#ec4899',
+                        accentPurple: '#a855f7',
+                        textMuted: '#94a3b8',
+                        textSubtlePink: '#d8b4fe'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #3b3561 0%, #2f2b57 50%, #25254b 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        /* Smooth transition for filtering */
+        .blog-card {
+            transition: all 0.3s ease-in-out;
+        }
+        /* Hover glow effect for cards */
+        .blog-card:hover {
+            box-shadow: 0 10px 30px -10px rgba(168, 85, 247, 0.4);
+            border-color: rgba(216, 180, 254, 0.3);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden flex flex-col min-h-screen">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-navBg px-8 py-4 flex justify-between items-center border-b border-gray-800 sticky top-0 z-50">
+        <div class="flex items-center gap-6">
+            <span class="text-xl font-bold tracking-wide">ACM-W BPHC</span>
+            <div class="w-14 h-7 bg-gray-700 rounded-full flex items-center px-1 cursor-pointer">
+                <div class="w-5 h-5 bg-white rounded-full flex items-center justify-center translate-x-7 transition-transform">
+                    <svg class="w-3 h-3 text-gray-900" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                </div>
+            </div>
+        </div>
+        <ul class="flex space-x-8 text-sm font-medium text-gray-300">
+            <li><a href="#" class="hover:text-white transition">About</a></li>
+            <li class="flex items-center gap-1 cursor-pointer hover:text-white transition">
+                Domains 
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </li>
+            <li><a href="#" class="hover:text-white transition">Events</a></li>
+            <li><a href="#" class="hover:text-white transition">Fests</a></li>
+            <li><a href="#" class="text-white transition">Projects & Blogs</a></li>
+            <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="max-w-7xl mx-auto px-12 pt-20 pb-12 w-full">
+        <h4 class="text-xs text-textSubtlePink tracking-[0.2em] uppercase font-semibold mb-2">Knowledge Base</h4>
+        <h1 class="text-5xl font-bold leading-tight mb-6">Projects & Blogs.</h1>
+        <p class="text-gray-300 text-lg max-w-2xl leading-relaxed">
+            Explore technical deep-dives, devlogs, and insights curated by the women driving innovation in our chapter.
+        </p>
+
+        <!-- Filter Tags -->
+        <div class="mt-10 flex flex-wrap gap-3" id="filter-container">
+            <button onclick="filterArticles('all')" class="filter-btn px-6 py-2 rounded-full text-sm font-semibold bg-accentPurple text-white transition">All</button>
+            <button onclick="filterArticles('leadership')" class="filter-btn px-6 py-2 rounded-full text-sm font-semibold bg-cardBg border border-white/10 text-gray-300 hover:text-white hover:border-white/30 transition">Leadership</button>
+            <button onclick="filterArticles('algorithms')" class="filter-btn px-6 py-2 rounded-full text-sm font-semibold bg-cardBg border border-white/10 text-gray-300 hover:text-white hover:border-white/30 transition">Algorithms</button>
+            <button onclick="filterArticles('diversity')" class="filter-btn px-6 py-2 rounded-full text-sm font-semibold bg-cardBg border border-white/10 text-gray-300 hover:text-white hover:border-white/30 transition">Diversity</button>
+            <button onclick="filterArticles('innovation')" class="filter-btn px-6 py-2 rounded-full text-sm font-semibold bg-cardBg border border-white/10 text-gray-300 hover:text-white hover:border-white/30 transition">Innovation</button>
+        </div>
+    </header>
+
+    <!-- Blogs Grid -->
+    <main class="max-w-7xl mx-auto px-12 pb-24 w-full flex-1">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="articles-grid">
+            
+            <!-- Blog Card 1: Leadership -->
+            <article class="blog-card flex flex-col bg-cardBg rounded-2xl border border-white/5 overflow-hidden" data-category="leadership">
+                <div class="h-48 bg-gray-800 relative">
+                    <!-- Placeholder Image -->
+                    <img src="assets/featured-prism.jpg" alt="Prism" class="w-full h-full object-cover opacity-80 mix-blend-overlay">
+                    <div class="absolute top-4 left-4 bg-navBg/80 backdrop-blur-sm px-3 py-1 rounded text-[10px] tracking-widest uppercase font-bold text-textSubtlePink">
+                        Leadership
+                    </div>
+                </div>
+                <div class="p-8 flex flex-col flex-1 justify-between">
+                    <div>
+                        <h2 class="text-xl font-bold text-white mb-3 leading-snug">Breaking the Silicon Ceiling: Women Reshaping AI Research</h2>
+                        <p class="text-sm text-textMuted leading-relaxed mb-6">
+                            An in-depth analysis of how female researchers are driving the next wave of artificial intelligence breakthroughs.
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-white/10">
+                        <a href="#" class="text-sm font-semibold text-white hover:text-accentPink transition flex items-center gap-2">
+                            Read More &rarr;
+                        </a>
+                        <span class="text-xs text-textMuted uppercase tracking-wider font-medium">12 MIN READ</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Blog Card 2: Algorithms -->
+            <article class="blog-card flex flex-col bg-cardBg rounded-2xl border border-white/5 overflow-hidden" data-category="algorithms">
+                <div class="h-48 bg-gray-800 relative">
+                    <img src="assets/blog-1-algorithms.jpg" alt="Algorithms" class="w-full h-full object-cover opacity-80 mix-blend-overlay">
+                    <div class="absolute top-4 left-4 bg-navBg/80 backdrop-blur-sm px-3 py-1 rounded text-[10px] tracking-widest uppercase font-bold text-cyan-400">
+                        Algorithms
+                    </div>
+                </div>
+                <div class="p-8 flex flex-col flex-1 justify-between">
+                    <div>
+                        <h2 class="text-xl font-bold text-white mb-3 leading-snug">Algorithmic Fairness: A Framework for Inclusive Machine Learning</h2>
+                        <p class="text-sm text-textMuted leading-relaxed mb-6">
+                            Exploring the mathematical foundations of fairness in ML systems, from demographic parity to equalized outcomes.
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-white/10">
+                        <a href="#" class="text-sm font-semibold text-white hover:text-cyan-400 transition flex items-center gap-2">
+                            Read More &rarr;
+                        </a>
+                        <span class="text-xs text-textMuted uppercase tracking-wider font-medium">9 MIN READ</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Blog Card 3: Diversity -->
+            <article class="blog-card flex flex-col bg-cardBg rounded-2xl border border-white/5 overflow-hidden" data-category="diversity">
+                <div class="h-48 bg-gray-800 relative">
+                    <img src="assets/blog-2-diversity.jpg" alt="Diversity" class="w-full h-full object-cover opacity-80 mix-blend-overlay">
+                    <div class="absolute top-4 left-4 bg-navBg/80 backdrop-blur-sm px-3 py-1 rounded text-[10px] tracking-widest uppercase font-bold text-accentPink">
+                        Diversity
+                    </div>
+                </div>
+                <div class="p-8 flex flex-col flex-1 justify-between">
+                    <div>
+                        <h2 class="text-xl font-bold text-white mb-3 leading-snug">The Pipeline Problem: Rethinking CS Education</h2>
+                        <p class="text-sm text-textMuted leading-relaxed mb-6">
+                            Why the 'pipeline' metaphor fails to capture the real barriers in computer science education, and what we can do.
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-white/10">
+                        <a href="#" class="text-sm font-semibold text-white hover:text-accentPink transition flex items-center gap-2">
+                            Read More &rarr;
+                        </a>
+                        <span class="text-xs text-textMuted uppercase tracking-wider font-medium">7 MIN READ</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Blog Card 4: Innovation -->
+            <article class="blog-card flex flex-col bg-cardBg rounded-2xl border border-white/5 overflow-hidden" data-category="innovation">
+                <div class="h-48 bg-gray-800 relative">
+                    <img src="assets/blog-3-innovation.jpg" alt="Innovation" class="w-full h-full object-cover opacity-80 mix-blend-overlay">
+                    <div class="absolute top-4 left-4 bg-navBg/80 backdrop-blur-sm px-3 py-1 rounded text-[10px] tracking-widest uppercase font-bold text-emerald-400">
+                        Innovation
+                    </div>
+                </div>
+                <div class="p-8 flex flex-col flex-1 justify-between">
+                    <div>
+                        <h2 class="text-xl font-bold text-white mb-3 leading-snug">Distributed Systems and the Future of Collaborative Computing</h2>
+                        <p class="text-sm text-textMuted leading-relaxed mb-6">
+                            From consensus algorithms to edge computing — how the next generation of distributed systems will connect us.
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between mt-auto pt-4 border-t border-white/10">
+                        <a href="#" class="text-sm font-semibold text-white hover:text-emerald-400 transition flex items-center gap-2">
+                            Read More &rarr;
+                        </a>
+                        <span class="text-xs text-textMuted uppercase tracking-wider font-medium">10 MIN READ</span>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#060913] pt-16 pb-8 px-12 border-t border-gray-900 mt-auto w-full">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <!-- Branding -->
+                <div class="md:col-span-2 space-y-4">
+                    <div class="w-10 h-2 bg-gradient-to-r from-accentPink to-cyan-400 rounded-full mb-6"></div>
+                    <h3 class="text-xl font-bold text-white">ACM-W BPHC</h3>
+                    <p class="text-textSubtlePink text-sm">Student chapter · BITS Pilani, Hyderabad Campus</p>
+                </div>
+                
+                <!-- Connect Links -->
+                <div>
+                    <h4 class="text-white font-bold text-sm tracking-widest uppercase mb-6">Connect</h4>
+                    <ul class="space-y-4 text-textSubtlePink text-sm">
+                        <li><a href="#" class="hover:text-white transition">Email us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Instagram</a></li>
+                        <li><a href="#" class="hover:text-white transition">LinkedIn</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Link -->
+                <div>
+                    <h4 class="text-white font-bold text-sm tracking-widest uppercase mb-6">Contact Us</h4>
+                    <a href="#" class="text-textSubtlePink text-sm hover:text-white transition">Get in touch &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center text-[#475569] text-xs pt-8 border-t border-gray-800">
+                <p>&copy; 2026 ACM-W, BITS Pilani Hyderabad Campus. Built by the chapter, for the chapter.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Filter Logic -->
+    <script>
+        function filterArticles(category) {
+            const cards = document.querySelectorAll('.blog-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Handle Button Styling
+            buttons.forEach(btn => {
+                // Reset all to inactive style
+                btn.classList.remove('bg-accentPurple', 'text-white');
+                btn.classList.add('bg-cardBg', 'border-white/10', 'text-gray-300');
+            });
+            
+            // Set active style to clicked button
+            event.currentTarget.classList.remove('bg-cardBg', 'border-white/10', 'text-gray-300');
+            event.currentTarget.classList.add('bg-accentPurple', 'text-white');
+
+            // Handle Card Display
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                    // Slight delay for smooth reappearance
+                    setTimeout(() => { card.style.opacity = '1'; }, 50);
+                } else {
+                    card.style.opacity = '0';
+                    // Wait for fade out before hiding completely
+                    setTimeout(() => { card.style.display = 'none'; }, 300);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
